@@ -6,9 +6,22 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/soma", (req, res) => {
-    const { numero1, numero2 } = req.body;
-    const resultado = numero1 + numero2;
-    res.json({ resultado });
+    const { numero1, numero2, sinal } = req.body;
+    if (sinal == '+'){
+        const resultado = numero1 + numero2;
+        res.json({ resultado });
+    }
+    else if (sinal == '-'){
+        const resultado = numero1 - numero2;
+        res.json({resultado});
+    } else if (sinal == '*'){
+        const resultado = numero1 * numero2;
+        res.json({resultado});
+    } else if (sinal == '/'){
+        const resultado = numero1 / numero2;
+        res.json({resultado});
+    }
+    
 });
 
 app.listen(3030, () => {

@@ -8,14 +8,15 @@
     <h1>Soma de Dois Números</h1>
 
     Número 1: <input type="text" id="num1"><br>
-    Número 2: <input type="text" id="num2"><br><br>
-
-    <button type="button" onclick="enviar()">Somar</button>
+    Número 2: <input type="text" id="num2"><br>
+    Sinal: <input type="text" id="sinal"><br>
+    <button type="button" onclick="enviar()">Enviar</button>
 
     <script>
         const enviar = () => {
             let numero1 = parseFloat(document.getElementById("num1").value);
             let numero2 = parseFloat(document.getElementById("num2").value);
+            let sinal = document.getElementById("sinal").value;
 
             // Enviar os números para o backend
             fetch("http://localhost:3030/api/soma", {
@@ -23,11 +24,11 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ numero1, numero2 })
+                body: JSON.stringify({ numero1, numero2, sinal})
             })
             .then(res => res.json())
             .then(data => {
-                alert("A soma é: " + data.resultado);
+                alert("O resultado é: " + data.resultado);
             })
             .catch(err => console.error("Erro:", err));
         }
